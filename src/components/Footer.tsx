@@ -3,22 +3,22 @@ import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 
 const socialLinks = [
   {
-    href: "https://linkedin.com/in/manohar-gupta",
+    href: "https://www.linkedin.com/in/connectmanohar/",
     icon: Linkedin,
     label: "LinkedIn",
   },
   {
-    href: "https://github.com",
+    href: "https://github.com/manohar6839",
     icon: Github,
     label: "GitHub",
   },
   {
-    href: "https://twitter.com",
+    href: "https://x.com/hiemanohar",
     icon: Twitter,
-    label: "Twitter",
+    label: "X",
   },
   {
-    href: "mailto:manohar@example.com",
+    href: "mailto:pgp09manoharg@iimrohtak.ac.in",
     icon: Mail,
     label: "Email",
   },

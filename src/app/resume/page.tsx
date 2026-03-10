@@ -102,9 +102,9 @@ export default function ResumePage() {
         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
           <span>Gurugram, India</span>
           <span>•</span>
-          <a href="mailto:manohar@example.com" className="hover:text-primary">manohar@example.com</a>
+          <a href="mailto:pgp09manoharg@iimrohtak.ac.in" className="hover:text-primary">pgp09manoharg@iimrohtak.ac.in</a>
           <span>•</span>
-          <a href="https://linkedin.com/in/manohar-gupta" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/connectmanohar/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn</a>
         </div>
       </div>
 

@@ -31,8 +31,9 @@ export default function Home() {
     ],
     url: "https://manohargupta.com",
     sameAs: [
-      "https://linkedin.com/in/manohar-gupta",
-      "https://github.com",
+      "https://www.linkedin.com/in/connectmanohar/",
+      "https://github.com/manohar6839",
+      "https://x.com/hiemanohar",
     ],
   }
 

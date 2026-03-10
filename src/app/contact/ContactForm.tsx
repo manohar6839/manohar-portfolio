@@ -196,14 +196,14 @@ export function ContactForm() {
             </h2>
             <div className="space-y-4">
               <a
-                href="mailto:manohar@example.com"
+                href="mailto:pgp09manoharg@iimrohtak.ac.in"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />
-                <span>manohar@example.com</span>
+                <span>pgp09manoharg@iimrohtak.ac.in</span>
               </a>
               <a
-                href="https://linkedin.com/in/manohar-gupta"
+                href="https://www.linkedin.com/in/connectmanohar/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
@@ -212,7 +212,7 @@ export function ContactForm() {
                 <span>LinkedIn</span>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/manohar6839"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
