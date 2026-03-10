@@ -70,7 +70,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="container py-12 max-w-6xl">
+    <div className="container py-12 max-w-6xl mx-auto px-4">
       <div className="mb-12">
         <h1 className="text-4xl font-heading font-bold mb-4">Get in Touch</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">

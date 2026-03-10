@@ -92,7 +92,7 @@ const skillGroups = [
 
 export default function ResumePage() {
   return (
-    <div className="container py-12 max-w-4xl">
+    <div className="container py-12 max-w-4xl mx-auto px-4">
       {/* Header */}
       <div className="mb-12">
         <h1 className="text-4xl font-heading font-bold mb-2">Manohar Gupta</h1>

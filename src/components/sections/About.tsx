@@ -7,10 +7,10 @@ import { useRef } from "react"
 import { GraduationCap, Award, Briefcase, Building2, ArrowRight } from "lucide-react"
 
 const highlights = [
-  { icon: GraduationCap, label: "IIT Roorkee", sublabel: "B.Tech Mechanical" },
-  { icon: Award, label: "IIM Rohtak", sublabel: "MBA, Gold Medal (Rank #3)" },
-  { icon: Briefcase, label: "6+ Years", sublabel: "Finance & Renewable Energy" },
   { icon: Building2, label: "Current", sublabel: "Manager at ReNew" },
+  { icon: Award, label: "IIM Rohtak", sublabel: "MBA, Gold Medal (Rank #3)" },
+  { icon: GraduationCap, label: "IIT Roorkee", sublabel: "B.Tech Mechanical" },
+  { icon: Briefcase, label: "6+ Years", sublabel: "Finance & Renewable Energy" },
 ]
 
 export function About() {
