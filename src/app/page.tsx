@@ -10,8 +10,38 @@ export default function Home() {
   const featuredProjects = getFeaturedProjects()
   const journalPosts = getPublishedJournalPosts()
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Manohar Gupta",
+    jobTitle: "Manager at ReNew",
+    worksFor: {
+      "@type": "Organization",
+      name: "ReNew",
+    },
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "IIM Rohtak",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "IIT Roorkee",
+      },
+    ],
+    url: "https://manohargupta.com",
+    sameAs: [
+      "https://linkedin.com/in/manohar-gupta",
+      "https://github.com",
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero />
       <About />
       <FeaturedProjects projects={featuredProjects} />

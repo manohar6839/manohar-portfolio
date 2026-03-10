@@ -31,9 +31,58 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Manohar Gupta — Renewable Energy Professional & Builder",
+  metadataBase: new URL("https://manohargupta.com"),
+  title: {
+    default: "Manohar Gupta — Renewable Energy Professional & Builder",
+    template: "%s | Manohar Gupta",
+  },
   description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist. Specializing in renewable energy project finance, solar design, and building technology solutions.",
-  keywords: ["renewable energy", "project finance", "solar", "IIT Roorkee", "IIM Rohtak"],
+  keywords: [
+    "renewable energy",
+    "project finance",
+    "solar",
+    "IIT Roorkee",
+    "IIM Rohtak",
+    "solar plant design",
+    "financial modeling",
+    "renewable energy India",
+  ],
+  authors: [{ name: "Manohar Gupta" }],
+  creator: "Manohar Gupta",
+  publisher: "Manohar Gupta",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://manohargupta.com",
+    siteName: "Manohar Gupta",
+    title: "Manohar Gupta — Renewable Energy Professional & Builder",
+    description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist. Specializing in renewable energy project finance, solar design, and building technology solutions.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Manohar Gupta - Renewable Energy Professional & Builder",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manohar Gupta — Renewable Energy Professional & Builder",
+    description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
