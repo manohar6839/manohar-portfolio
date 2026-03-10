@@ -1,0 +1,38 @@
+---
+title: "Getting Started with ESP32 and DHT11 Sensors"
+description: "My journey into IoT: building a temperature and humidity monitoring system from scratch."
+date: "2026-01-25"
+tags: ["IoT", "Learning"]
+published: true
+---
+
+I&apos;ve always been curious about how things work. So when I decided to build a home office monitoring system, it felt like a natural extension of that curiosity.
+
+## The Hardware
+
+- **ESP32** — A powerful microcontroller with WiFi and Bluetooth
+- **DHT11** — Basic but affordable temperature and humidity sensor
+- **Breadboard and jumper wires** — For prototyping
+
+The total cost? About $10.
+
+## The Code
+
+I wrote a simple Arduino sketch that:
+1. Reads temperature and humidity every 10 seconds
+2. Publishes data via MQTT to a Node.js backend
+3. Stores readings for visualization
+
+## The Dashboard
+
+A React frontend subscribes to the MQTT topic and displays real-time data. It was my first time building a full-stack IoT application — and I loved every minute of it.
+
+## What I Learned
+
+- Microcontrollers are more accessible than I thought
+- MQTT is elegant for IoT communication
+- There&apos;s something satisfying about seeing physical sensors interact with web software
+
+## What&apos;s Next
+
+I&apos;ve already ordered a solar panel to add energy monitoring. The goal: a completely off-grid sensor setup powered by the sun.

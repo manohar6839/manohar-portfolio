@@ -1,0 +1,37 @@
+---
+title: "Understanding 8760 Energy Simulation Models"
+description: "A deep dive into hourly energy simulation for solar projects and why it matters for accurate financial modeling."
+date: "2026-02-15"
+tags: ["Solar", "Learning"]
+published: true
+---
+
+If you&apos;ve worked in solar project finance, you&apos;ve likely encountered the term &quot;8760 model.&quot; But what exactly does it mean, and why should you care?
+
+## What is 8760?
+
+8760 refers to the number of hours in a year (365 days × 24 hours). An 8760 energy simulation model creates an hourly profile of expected solar generation for every hour of the year.
+
+## Why Hourly Simulation Matters
+
+Daily or monthly averages simply don&apos;t cut it for project finance. Here&apos;s why:
+
+1. **Solar variability** — Generation peaks at noon, drops to zero at night
+2. **Grid constraints** — Hourly profiles reveal clipping and curtailment risks
+3. **Revenue forecasting** — Time-of-day pricing affects project economics
+4. **Degradation modeling** — Performance changes hour-by-hour over project lifetime
+
+## Key Inputs
+
+- Solar irradiance data (GHI, DNI, DHI)
+- Temperature data
+- System specifications (module type, tilt, azimuth)
+- Loss factors (soiling, shading, inverter efficiency)
+
+## My Approach
+
+I use Python with Pandas for data processing, validated against PVsyst outputs. The combination gives flexibility for custom analysis while maintaining credibility with industry-standard tools.
+
+## Key Takeaway
+
+Never rely on simple capacity factor estimates for serious project finance work. An 8760 model is the minimum standard for investment-grade analysis.

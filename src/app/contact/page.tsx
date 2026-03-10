@@ -1,14 +1,11 @@
-import { Metadata } from 'next'
+import { Metadata } from "next"
+import { ContactForm } from "./ContactForm"
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Get in touch with Manohar Gupta.',
+  title: "Contact",
+  description: "Get in touch with Manohar Gupta.",
 }
 
 export default function ContactPage() {
-  return (
-    <div className="container py-24">
-      <h1>Contact</h1>
-    </div>
-  )
+  return <ContactForm />
 }
