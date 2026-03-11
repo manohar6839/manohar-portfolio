@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
+import { ExternalCard } from "@/components/ExternalCard"
 import { JournalFrontmatter } from "@/types"
 
 interface JournalPost {
@@ -34,42 +35,61 @@ export function JournalList({ posts }: JournalListProps) {
 
       {posts.length > 0 ? (
         <div className="space-y-0">
-          {posts.map((post, index) => (
-            <motion.div
-              key={post.slug}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Link
-                href={`/journal/${post.slug}`}
-                className="block group"
+          {posts.map((post, index) => {
+            // Check if it's an external article
+            if (post.frontmatter.externalUrl) {
+              return (
+                <ExternalCard
+                  key={post.slug}
+                  title={post.frontmatter.title}
+                  description={post.frontmatter.description}
+                  date={post.frontmatter.date}
+                  tags={post.frontmatter.tags}
+                  externalUrl={post.frontmatter.externalUrl}
+                  platform={post.frontmatter.externalPlatform}
+                  index={index}
+                />
+              )
+            }
+
+            // Render internal MDX post
+            return (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <div className="py-6 border-b border-border hover:bg-muted/50 transition-colors">
-                  <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-8">
-                    <time className="text-sm text-muted-foreground w-24 shrink-0">
-                      {formatDate(post.frontmatter.date)}
-                    </time>
-                    <div className="flex-1 min-w-0">
-                      <h2 className="font-heading font-semibold text-xl mb-2 group-hover:text-primary transition-colors">
-                        {post.frontmatter.title}
-                      </h2>
-                      <p className="text-muted-foreground mb-3">
-                        {post.frontmatter.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1">
-                        {post.frontmatter.tags.map((tag) => (
-                          <Badge key={tag} variant="outline" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
+                <Link
+                  href={`/journal/${post.slug}`}
+                  className="block group"
+                >
+                  <div className="py-6 border-b border-border hover:bg-muted/50 transition-colors">
+                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-8">
+                      <time className="text-sm text-muted-foreground w-24 shrink-0">
+                        {formatDate(post.frontmatter.date)}
+                      </time>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="font-heading font-semibold text-xl mb-2 group-hover:text-primary transition-colors">
+                          {post.frontmatter.title}
+                        </h2>
+                        <p className="text-muted-foreground mb-3">
+                          {post.frontmatter.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {post.frontmatter.tags.map((tag) => (
+                            <Badge key={tag} variant="outline" className="text-xs">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            )
+          })}
         </div>
       ) : (
         <p className="text-muted-foreground text-center py-12">

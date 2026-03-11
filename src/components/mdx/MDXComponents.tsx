@@ -2,8 +2,10 @@
 
 import React from "react"
 import Link from "next/link"
+import { LinkedInEmbed } from "./LinkedInEmbed"
 
 const components = {
+  LinkedInEmbed,
   h1: ({ children }: { children: React.ReactNode }) => (
     <h1 className="text-4xl font-heading font-bold mt-8 mb-4">{children}</h1>
   ),

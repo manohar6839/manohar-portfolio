@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 
 export default function TestPage() {
   return (
-    <div className="container py-12 max-w-4xl">
+    <div className="container py-12 max-w-4xl mx-auto px-4">
       <h1 className="text-4xl font-bold mb-8">Theme Test Page</h1>
 
       {/* Brand Color Swatches */}

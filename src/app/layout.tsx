@@ -4,6 +4,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
+import { AgentationWrapper } from "@/components/AgentationWrapper";
+import Script from "next/script";
 import "./globals.css";
 
 const heading = Plus_Jakarta_Sans({
@@ -72,6 +74,11 @@ export const metadata: Metadata = {
     description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   robots: {
     index: true,
     follow: true,
@@ -101,6 +108,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {process.env.NODE_ENV === "development" && <AgentationWrapper />}
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1 pt-16">
@@ -111,6 +119,26 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        {process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`}
+            />
+            <Script
+              id="ga4-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}');
+                `,
+              }}
+            />
+          </>
+        )}
       </body>
     </html>
   );

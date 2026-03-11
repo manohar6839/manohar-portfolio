@@ -7,6 +7,7 @@ import { JournalFrontmatter } from "@/types"
 import { Badge } from "@/components/ui/badge"
 import MDXComponents from "@/components/mdx/MDXComponents"
 import { MDXRemote } from "next-mdx-remote/rsc"
+import Script from "next/script"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -14,9 +15,12 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const posts = getAllContent("journal")
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
+  console.log("Journal slugs:", posts.map(p => ({ slug: p.slug, frontmatter: p.frontmatter.title })))
+  return posts
+    .filter((post) => post.slug && post.slug !== "undefined" && post.slug.length > 0)
+    .map((post) => ({
+      slug: post.slug,
+    }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -28,6 +32,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: `${frontmatter.title} | Journal`,
       description: frontmatter.description,
+      alternates: {
+        canonical: `https://manohargupta.com/journal/${slug}`,
+      },
     }
   } catch {
     return {
@@ -93,8 +100,29 @@ export default async function JournalPostPage({ params }: PageProps) {
 
   const readingTime = calculateReadingTime(content)
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: frontmatter.title,
+    description: frontmatter.description,
+    author: {
+      "@type": "Person",
+      name: "Manohar Gupta",
+      url: "https://manohargupta.com",
+    },
+    datePublished: frontmatter.date,
+    dateModified: frontmatter.date,
+    image: "/og-image.png",
+    url: `https://manohargupta.com/journal/${slug}`,
+  }
+
   return (
-    <div className="container py-12 max-w-3xl">
+    <div className="container py-12 max-w-3xl mx-auto px-4">
+      <Script
+        id="journal-json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/journal"
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"

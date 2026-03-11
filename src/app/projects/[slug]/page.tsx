@@ -7,6 +7,7 @@ import { ProjectFrontmatter } from "@/types"
 import MDXComponents from "@/components/mdx/MDXComponents"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { Badge } from "@/components/ui/badge"
+import Script from "next/script"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -14,9 +15,11 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const projects = getAllContent("projects")
-  return projects.map((project) => ({
-    slug: project.slug,
-  }))
+  return projects
+    .filter((project) => project.slug && project.slug !== "undefined")
+    .map((project) => ({
+      slug: project.slug,
+    }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -28,6 +31,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: `${frontmatter.title} | Projects`,
       description: frontmatter.description,
+      alternates: {
+        canonical: `https://manohargupta.com/projects/${slug}`,
+      },
     }
   } catch {
     return {
@@ -50,8 +56,30 @@ export default async function ProjectPage({ params }: PageProps) {
     notFound()
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: frontmatter.title,
+    description: frontmatter.description,
+    author: {
+      "@type": "Person",
+      name: "Manohar Gupta",
+      url: "https://manohargupta.com",
+    },
+    datePublished: frontmatter.date,
+    dateModified: frontmatter.date,
+    image: frontmatter.thumbnail || "/og-image.png",
+    url: `https://manohargupta.com/projects/${slug}`,
+    about: frontmatter.tags?.join(", "),
+  }
+
   return (
-    <div className="container py-12 max-w-4xl">
+    <div className="container py-12 max-w-4xl mx-auto px-4">
+      <Script
+        id="project-json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/projects"
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"

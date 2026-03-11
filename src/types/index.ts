@@ -15,4 +15,6 @@ export interface JournalFrontmatter {
   date: string
   tags: string[]
   published?: boolean
+  externalUrl?: string
+  externalPlatform?: "linkedin" | "medium" | "devto"
 }
