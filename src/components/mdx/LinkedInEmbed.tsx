@@ -1,5 +1,3 @@
-"use client"
-
 interface LinkedInEmbedProps {
   postUrl: string
   title?: string

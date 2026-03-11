@@ -7,7 +7,6 @@ import { ProjectFrontmatter } from "@/types"
 import MDXComponents from "@/components/mdx/MDXComponents"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { Badge } from "@/components/ui/badge"
-import Script from "next/script"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -15,11 +14,9 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const projects = getAllContent("projects")
-  return projects
-    .filter((project) => project.slug && project.slug !== "undefined")
-    .map((project) => ({
-      slug: project.slug,
-    }))
+  return projects.map((project) => ({
+    slug: project.slug,
+  }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -75,8 +72,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <div className="container py-12 max-w-4xl mx-auto px-4">
-      <Script
-        id="project-json-ld"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

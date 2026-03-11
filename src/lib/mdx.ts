@@ -42,13 +42,11 @@ export function getAllContent(
   }
 
   const files = fs.readdirSync(directory)
-  console.log(`Files in ${type}:`, files)
 
   const content = files
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => {
       const slug = file.replace(/\.mdx$/, "")
-      console.log(`Processing slug: "${slug}"`)
       const { frontmatter } = getContentBySlug(type, slug)
       return {
         slug,

@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      agentation:
-        specifier: ^2.3.2
-        version: 2.3.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -66,6 +63,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.14)
+      agentation:
+        specifier: ^2.3.2
+        version: 2.3.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       eslint:
         specifier: ^9
         version: 9.39.4(jiti@2.6.1)
