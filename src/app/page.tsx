@@ -4,6 +4,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects"
 import { LatestJournal } from "@/components/sections/LatestJournal"
 import { CurrentlyBuilding } from "@/components/sections/CurrentlyBuilding"
 import { ContactCTA } from "@/components/sections/ContactCTA"
+import { NewsletterSignup } from "@/components/sections/NewsletterSignup"
 import { getFeaturedProjects, getPublishedJournalPosts } from "@/lib/mdx"
 
 export default function Home() {
@@ -48,6 +49,7 @@ export default function Home() {
       <FeaturedProjects projects={featuredProjects} />
       <LatestJournal posts={journalPosts} />
       <CurrentlyBuilding />
+      <NewsletterSignup />
       <ContactCTA />
     </>
   )

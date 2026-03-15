@@ -1,11 +1,13 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import { getContentBySlug, getAllContent } from "@/lib/mdx"
 import { JournalFrontmatter } from "@/types"
 import { Badge } from "@/components/ui/badge"
 import MDXComponents from "@/components/mdx/MDXComponents"
+import { LinkedInEmbed } from "@/components/mdx/LinkedInEmbed"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
 interface PageProps {
@@ -58,6 +60,7 @@ function formatDate(dateString: string): string {
 // Journal-specific components with serif font
 const journalComponents = {
   ...MDXComponents,
+  LinkedInEmbed,
   h1: ({ children }: { children: React.ReactNode }) => (
     <h1 className="text-4xl font-heading font-bold mt-8 mb-4">{children}</h1>
   ),
@@ -141,6 +144,19 @@ export default async function JournalPostPage({ params }: PageProps) {
           ))}
         </div>
       </header>
+
+      {frontmatter.coverImage && (
+        <div className="mb-10 rounded-xl overflow-hidden border border-border">
+          <Image
+            src={frontmatter.coverImage}
+            alt={frontmatter.title}
+            width={1280}
+            height={720}
+            className="w-full h-auto object-cover"
+            priority
+          />
+        </div>
+      )}
 
       <article>
         <MDXRemote source={content} components={journalComponents} />
