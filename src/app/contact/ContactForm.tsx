@@ -7,9 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-// NOTE: Manohar needs to create a free Web3Forms account at https://web3forms.com
-// and add the access key as NEXT_PUBLIC_WEB3FORMS_KEY in .env.local or Vercel env vars
-
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,30 +20,13 @@ export function ContactForm() {
     e.preventDefault()
     setStatus("loading")
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
-
-    if (!accessKey) {
-      // For demo purposes, simulate success if no key is configured
-      setTimeout(() => {
-        setStatus("success")
-        setFormData({ name: "", email: "", subject: "", message: "" })
-      }, 1000)
-      return
-    }
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `Portfolio Contact: ${formData.subject}`,
-          from_name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
+        body: JSON.stringify(formData),
       })
 
       if (response.ok) {
