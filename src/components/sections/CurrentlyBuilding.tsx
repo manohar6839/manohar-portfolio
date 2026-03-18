@@ -109,7 +109,7 @@ export function CurrentlyBuilding() {
             <motion.div key={index} variants={itemVariants}>
               <Link
                 href={project.link}
-                className="block p-6 rounded-xl border-2 border-dashed border-border hover:border-primary/50 transition-colors group"
+                className="block p-6 rounded-xl border-2 border-dashed border-border hover:border-primary/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] transition-all duration-300 group"
               >
                 <div className="text-primary mb-4">{project.icon}</div>
                 <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-primary transition-colors">

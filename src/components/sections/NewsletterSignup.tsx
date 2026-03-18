@@ -63,7 +63,7 @@ export function NewsletterSignup() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 inline-flex items-center justify-center gap-2"
+              className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300 disabled:opacity-50 inline-flex items-center justify-center gap-2"
             >
               {status === "loading" ? (
                 "Subscribing..."

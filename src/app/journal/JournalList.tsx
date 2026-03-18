@@ -78,7 +78,7 @@ export function JournalList({ posts }: JournalListProps) {
                         </p>
                         <div className="flex flex-wrap gap-1">
                           {post.frontmatter.tags.map((tag) => (
-                            <Badge key={tag} variant="outline" className="text-xs">
+                            <Badge key={tag} variant="outline" className="text-xs hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                               {tag}
                             </Badge>
                           ))}

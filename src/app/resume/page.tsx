@@ -164,7 +164,7 @@ export default function ResumePage() {
         <h2 className="text-2xl font-heading font-bold mb-6">Education</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {education.map((edu, index) => (
-            <div key={index} className="border rounded-xl p-6">
+            <div key={index} className="border rounded-xl p-6 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:border-primary/50 transition-all duration-300">
               <div className="flex items-start gap-3 mb-3">
                 <div className="p-2 bg-primary/10 rounded-lg text-primary">
                   <GraduationCap className="h-5 w-5" />
@@ -178,7 +178,7 @@ export default function ResumePage() {
               {edu.details.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {edu.details.map((detail, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs">
+                    <Badge key={i} variant="secondary" className="text-xs hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                       {detail}
                     </Badge>
                   ))}
@@ -194,11 +194,11 @@ export default function ResumePage() {
         <h2 className="text-2xl font-heading font-bold mb-6">Skills & Tools</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {skillGroups.map((group, index) => (
-            <div key={index} className="border rounded-xl p-6">
+            <div key={index} className="border rounded-xl p-6 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:border-primary/50 transition-all duration-300">
               <h3 className="font-heading font-semibold mb-3">{group.category}</h3>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill, i) => (
-                  <Badge key={i} variant="outline">
+                  <Badge key={i} variant="outline" className="hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                     {skill}
                   </Badge>
                 ))}
@@ -212,14 +212,12 @@ export default function ResumePage() {
       <section>
         <Link
           href="/manohar-gupta-resume.pdf"
+          target="_blank"
           className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
         >
           <Download className="h-4 w-4" />
           Download PDF Resume
         </Link>
-        <p className="text-sm text-muted-foreground mt-2">
-          (PDF coming soon)
-        </p>
       </section>
     </div>
   )

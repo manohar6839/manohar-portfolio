@@ -86,7 +86,7 @@ export function ExternalCard({
               <p className="text-muted-foreground mb-3">{description}</p>
               <div className="flex flex-wrap gap-1">
                 {tags.map((tag) => (
-                  <Badge key={tag} variant="outline" className="text-xs">
+                  <Badge key={tag} variant="outline" className="text-xs hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                     {tag}
                   </Badge>
                 ))}

@@ -77,7 +77,7 @@ export function LatestJournal({ posts }: LatestJournalProps) {
                     </div>
                     <div className="flex flex-wrap gap-1 md:justify-end">
                       {post.frontmatter.tags.slice(0, 2).map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
+                        <Badge key={tag} variant="outline" className="text-xs hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                           {tag}
                         </Badge>
                       ))}

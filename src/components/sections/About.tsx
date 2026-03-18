@@ -63,7 +63,7 @@ export function About() {
 
           {/* Right column - Highlights */}
           <div className="md:col-span-2">
-            <div className="bg-card border rounded-xl p-6">
+            <div className="bg-card border rounded-xl p-6 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:border-primary/50 transition-all duration-300">
               <h3 className="font-heading font-semibold mb-4">Quick Facts</h3>
               <ul className="space-y-4">
                 {highlights.map((item, index) => (

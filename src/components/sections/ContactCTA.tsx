@@ -51,7 +51,7 @@ export function ContactCTA() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors mb-8"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300 mb-8"
           >
             Get in Touch
           </Link>

@@ -6,21 +6,25 @@ const socialLinks = [
     href: "https://www.linkedin.com/in/connectmanohar/",
     icon: Linkedin,
     label: "LinkedIn",
+    external: true,
   },
   {
     href: "https://github.com/manohar6839",
     icon: Github,
     label: "GitHub",
+    external: true,
   },
   {
     href: "https://x.com/hiemanohar",
     icon: Twitter,
     label: "X",
+    external: true,
   },
   {
     href: "mailto:pgp09manoharg@iimrohtak.ac.in",
     icon: Mail,
     label: "Email",
+    external: false,
   },
 ]
 
@@ -38,9 +42,9 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200"
                 aria-label={link.label}
               >
                 <link.icon className="h-5 w-5" />

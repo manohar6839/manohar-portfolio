@@ -133,7 +133,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                   transition={{ duration: 0.2 }}
                 >
                   <Link href={`/projects/${project.slug}`}>
-                    <Card className="h-full hover:shadow-lg transition-all cursor-pointer group">
+                    <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent">
                       <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 rounded-t-xl" />
                       <CardContent className="p-4">
                         <h3 className="font-heading font-semibold text-xl mb-2 group-hover:text-primary transition-colors">
@@ -144,7 +144,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                         </p>
                         <div className="flex flex-wrap gap-1 mb-3">
                           {project.frontmatter.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
+                            <Badge key={tag} variant="secondary" className="text-xs hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                               {tag}
                             </Badge>
                           ))}

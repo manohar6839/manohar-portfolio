@@ -107,7 +107,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           {displayProjects.slice(0, 3).map((project, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Link href={project.slug ? `/projects/${project.slug}` : "/projects"}>
-                <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+                <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent">
                   <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 rounded-t-xl" />
                   <CardContent className="p-4">
                     <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
@@ -118,7 +118,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     </p>
                     <div className="flex flex-wrap gap-1 mb-3">
                       {project.frontmatter.tags.slice(0, 2).map((tag) => (
-                        <Badge key={tag} variant="secondary" className="text-xs">
+                        <Badge key={tag} variant="secondary" className="text-xs hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
                           {tag}
                         </Badge>
                       ))}

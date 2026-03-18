@@ -138,7 +138,7 @@ export default async function JournalPostPage({ params }: PageProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           {frontmatter.tags.map((tag) => (
-            <Badge key={tag} variant="secondary">
+            <Badge key={tag} variant="secondary" className="hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all cursor-pointer">
               {tag}
             </Badge>
           ))}

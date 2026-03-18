@@ -227,7 +227,7 @@ export function ContactForm() {
             </div>
           </div>
 
-          <div className="p-6 bg-muted/30 rounded-xl">
+          <div className="p-6 bg-muted/30 rounded-xl border border-transparent hover:border-primary/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] transition-all duration-300">
             <h3 className="font-heading font-semibold mb-2">
               Let&apos;s Connect
             </h3>

@@ -75,14 +75,14 @@ export function Hero() {
             >
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300"
               >
                 View Projects
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/journal"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary/10 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary/10 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)] transition-all duration-300"
               >
                 Read Journal
               </Link>
@@ -95,10 +95,10 @@ export function Hero() {
           >
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
               <Image
-                src="/profile.jpg"
+                src="/profile-new.jpeg"
                 alt="Manohar Gupta"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
               />
             </div>
