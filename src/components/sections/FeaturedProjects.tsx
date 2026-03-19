@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { motion, type Variants, useInView } from "framer-motion"
 import { useRef } from "react"
 import { ArrowRight } from "lucide-react"
@@ -107,8 +108,19 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           {displayProjects.slice(0, 3).map((project, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Link href={project.slug ? `/projects/${project.slug}` : "/projects"}>
-                <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent">
-                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 rounded-t-xl" />
+                <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent overflow-hidden">
+                  {project.frontmatter.thumbnail ? (
+                    <div className="relative aspect-video w-full overflow-hidden">
+                      <Image
+                        src={project.frontmatter.thumbnail}
+                        alt={project.frontmatter.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  ) : (
+                    <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 rounded-t-xl" />
+                  )}
                   <CardContent className="p-4">
                     <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                       {project.frontmatter.title}

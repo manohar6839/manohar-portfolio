@@ -10,6 +10,8 @@ export interface ProjectFrontmatter {
   metrics?: string
   tools?: string[]
   status?: ProjectStatus
+  externalLink?: string
+  githubLink?: string
 }
 
 export interface JournalFrontmatter {

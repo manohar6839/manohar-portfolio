@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ProjectFrontmatter } from "@/types"
 import { ProjectsDeck } from "./ProjectsDeck"
-import { LayoutGrid, Layers } from "lucide-react"
+import { LayoutGrid, Layers, Globe, Github } from "lucide-react"
 
 interface Project {
   slug: string
@@ -22,6 +22,7 @@ interface ProjectsListProps {
 type Status = "completed" | "in-progress" | "planned"
 
 export function ProjectsList({ projects }: ProjectsListProps) {
+  const router = useRouter()
   const [activeFilter, setActiveFilter] = useState("All")
   const [viewMode, setViewMode] = useState<"grid" | "deck">("grid")
 
@@ -77,7 +78,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.2 }}
     >
-      <Link href={`/projects/${project.slug}`}>
+      <div onClick={() => router.push(`/projects/${project.slug}`)} role="link" tabIndex={0}>
         <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent overflow-hidden">
           {project.frontmatter.thumbnail ? (
             <div className="relative aspect-video w-full overflow-hidden">
@@ -114,9 +115,37 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                 {project.frontmatter.metrics}
               </p>
             )}
+            {(project.frontmatter.externalLink || project.frontmatter.githubLink) && (
+              <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/50">
+                {project.frontmatter.externalLink && (
+                  <a
+                    href={project.frontmatter.externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Globe className="w-3.5 h-3.5" />
+                    Live Site
+                  </a>
+                )}
+                {project.frontmatter.githubLink && (
+                  <a
+                    href={project.frontmatter.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    Source
+                  </a>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
-      </Link>
+      </div>
     </motion.div>
   )
 
