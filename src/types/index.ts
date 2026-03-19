@@ -1,3 +1,5 @@
+export type ProjectStatus = "completed" | "in-progress" | "planned"
+
 export interface ProjectFrontmatter {
   title: string
   description: string
@@ -7,6 +9,7 @@ export interface ProjectFrontmatter {
   thumbnail?: string
   metrics?: string
   tools?: string[]
+  status?: ProjectStatus
 }
 
 export interface JournalFrontmatter {

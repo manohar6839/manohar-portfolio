@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
 import { AgentationWrapper } from "@/components/AgentationWrapper";
 import Script from "next/script";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 const heading = Plus_Jakarta_Sans({
@@ -33,45 +34,45 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://manohargupta.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Manohar Gupta — Renewable Energy Professional & Builder",
-    template: "%s | Manohar Gupta",
+    default: siteConfig.title,
+    template: "%s | " + siteConfig.name,
   },
-  description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist. Specializing in renewable energy project finance, solar design, and building technology solutions.",
+  description: siteConfig.description,
   keywords: [
     "renewable energy",
     "project finance",
     "solar",
-    "IIT Roorkee",
-    "IIM Rohtak",
+    siteConfig.education.iit,
+    siteConfig.education.iim,
     "solar plant design",
     "financial modeling",
     "renewable energy India",
   ],
-  authors: [{ name: "Manohar Gupta" }],
-  creator: "Manohar Gupta",
-  publisher: "Manohar Gupta",
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://manohargupta.com",
-    siteName: "Manohar Gupta",
-    title: "Manohar Gupta — Renewable Energy Professional & Builder",
-    description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist. Specializing in renewable energy project finance, solar design, and building technology solutions.",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Manohar Gupta - Renewable Energy Professional & Builder",
+        alt: siteConfig.title,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manohar Gupta — Renewable Energy Professional & Builder",
-    description: "Portfolio of Manohar Gupta — Manager at ReNew, IIT Roorkee engineer, IIM Rohtak gold medalist.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     images: ["/og-image.png"],
   },
   icons: {

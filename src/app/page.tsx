@@ -1,40 +1,44 @@
-import { Hero } from "@/components/sections/Hero"
-import { About } from "@/components/sections/About"
-import { FeaturedProjects } from "@/components/sections/FeaturedProjects"
-import { LatestJournal } from "@/components/sections/LatestJournal"
-import { CurrentlyBuilding } from "@/components/sections/CurrentlyBuilding"
-import { ContactCTA } from "@/components/sections/ContactCTA"
-import { NewsletterSignup } from "@/components/sections/NewsletterSignup"
-import { getFeaturedProjects, getPublishedJournalPosts } from "@/lib/mdx"
+import {
+  Hero,
+  About,
+  FeaturedProjects,
+  LatestJournal,
+  CurrentlyBuilding,
+  ContactCTA,
+  NewsletterSignup,
+} from "@/components/sections"
+import { getFeaturedProjects, getPublishedJournalPosts, getWipProjects } from "@/lib/mdx"
+import { siteConfig } from "@/config/site"
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects()
   const journalPosts = getPublishedJournalPosts()
+  const wipProjects = getWipProjects()
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Manohar Gupta",
-    jobTitle: "Manager at ReNew",
+    name: siteConfig.name,
+    jobTitle: siteConfig.role,
     worksFor: {
       "@type": "Organization",
-      name: "ReNew",
+      name: siteConfig.company,
     },
     alumniOf: [
       {
         "@type": "EducationalOrganization",
-        name: "IIM Rohtak",
+        name: siteConfig.education.iim,
       },
       {
         "@type": "EducationalOrganization",
-        name: "IIT Roorkee",
+        name: siteConfig.education.iit,
       },
     ],
-    url: "https://manohargupta.com",
+    url: siteConfig.url,
     sameAs: [
-      "https://www.linkedin.com/in/connectmanohar/",
-      "https://github.com/manohar6839",
-      "https://x.com/hiemanohar",
+      siteConfig.socialLinks.linkedin,
+      siteConfig.socialLinks.github,
+      siteConfig.socialLinks.twitter,
     ],
   }
 
@@ -48,7 +52,7 @@ export default function Home() {
       <About />
       <FeaturedProjects projects={featuredProjects} />
       <LatestJournal posts={journalPosts} />
-      <CurrentlyBuilding />
+      <CurrentlyBuilding projects={wipProjects} />
       <NewsletterSignup />
       <ContactCTA />
     </>

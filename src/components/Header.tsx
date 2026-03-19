@@ -56,12 +56,23 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`relative text-sm font-medium px-3 py-1.5 rounded-md transition-all duration-300 group ${
                     pathname === link.href
                       ? "text-primary"
-                      : "text-muted-foreground"
+                      : "text-muted-foreground hover:text-primary"
                   }`}
                 >
+                  {/* Gradient border on hover only */}
+                  <span
+                    className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"
+                    style={{
+                      background: "linear-gradient(to right, #2dd4bf, #14b8a6)",
+                      WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
+                      WebkitMaskComposite: "xor",
+                      maskComposite: "exclude",
+                      border: "1.5px solid transparent",
+                    }}
+                  />
                   {link.label}
                 </Link>
               ))}

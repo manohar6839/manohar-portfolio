@@ -89,3 +89,33 @@ export function getPublishedJournalPosts(): Array<{
     (post) => post.frontmatter.published !== false
   )
 }
+
+export function getProjectsByStatus(
+  status: "completed" | "in-progress" | "planned"
+): Array<{
+  slug: string
+  frontmatter: ProjectFrontmatter
+}> {
+  const allProjects = getAllContent("projects") as Array<{
+    slug: string
+    frontmatter: ProjectFrontmatter
+  }>
+
+  return allProjects.filter(
+    (project) => project.frontmatter.status === status
+  )
+}
+
+export function getWipProjects(): Array<{
+  slug: string
+  frontmatter: ProjectFrontmatter
+}> {
+  const allProjects = getAllContent("projects") as Array<{
+    slug: string
+    frontmatter: ProjectFrontmatter
+  }>
+
+  return allProjects.filter(
+    (project) => project.frontmatter.status !== "completed"
+  )
+}

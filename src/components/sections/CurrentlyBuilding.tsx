@@ -3,49 +3,24 @@
 import Link from "next/link"
 import { motion, type Variants, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Wrench, Zap, Cpu } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { ProjectFrontmatter } from "@/types"
 
-type Status = "in-progress" | "live" | "planned"
-
-interface CurrentProject {
-  title: string
-  description: string
-  status: Status
-  link: string
-  icon: React.ReactNode
+interface Project {
+  slug: string
+  frontmatter: ProjectFrontmatter
 }
 
-const currentProjects: CurrentProject[] = [
-  {
-    title: "IoT Sensor Dashboard",
-    description: "Real-time monitoring for temperature and humidity sensors",
-    status: "in-progress",
-    link: "/",
-    icon: <Cpu className="h-6 w-6" />,
-  },
-  {
-    title: "Solar Calculator",
-    description: "Estimate rooftop solar potential and ROI",
-    status: "planned",
-    link: "/",
-    icon: <Zap className="h-6 w-6" />,
-  },
-  {
-    title: "Energy Analysis Tools",
-    description: "Financial models for renewable energy projects",
-    status: "in-progress",
-    link: "/",
-    icon: <Wrench className="h-6 w-6" />,
-  },
-]
+interface CurrentlyBuildingProps {
+  projects: Project[]
+}
+
+type Status = "in-progress" | "planned"
 
 function getStatusColor(status: Status): string {
   switch (status) {
     case "in-progress":
       return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-    case "live":
-      return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
     case "planned":
       return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
   }
@@ -55,14 +30,12 @@ function getStatusLabel(status: Status): string {
   switch (status) {
     case "in-progress":
       return "In Progress"
-    case "live":
-      return "Live"
     case "planned":
       return "Planned"
   }
 }
 
-export function CurrentlyBuilding() {
+export function CurrentlyBuilding({ projects }: CurrentlyBuildingProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -87,6 +60,11 @@ export function CurrentlyBuilding() {
     },
   }
 
+  // Don't render section if no WIP projects
+  if (projects.length === 0) {
+    return null
+  }
+
   return (
     <section ref={ref} className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -105,22 +83,23 @@ export function CurrentlyBuilding() {
           animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-3 gap-6"
         >
-          {currentProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Link
-                href={project.link}
+                href="/projects"
                 className="block p-6 rounded-xl border-2 border-dashed border-border hover:border-primary/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] transition-all duration-300 group"
               >
-                <div className="text-primary mb-4">{project.icon}</div>
                 <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
+                  {project.frontmatter.title}
                 </h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
+                  {project.frontmatter.description}
                 </p>
-                <Badge className={getStatusColor(project.status)}>
-                  {getStatusLabel(project.status)}
-                </Badge>
+                {project.frontmatter.status && (
+                  <Badge className={getStatusColor(project.frontmatter.status as Status)}>
+                    {getStatusLabel(project.frontmatter.status as Status)}
+                  </Badge>
+                )}
               </Link>
             </motion.div>
           ))}

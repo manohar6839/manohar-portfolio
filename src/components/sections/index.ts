@@ -1,0 +1,7 @@
+export { Hero } from "./Hero"
+export { About } from "./About"
+export { FeaturedProjects } from "./FeaturedProjects"
+export { LatestJournal } from "./LatestJournal"
+export { CurrentlyBuilding } from "./CurrentlyBuilding"
+export { ContactCTA } from "./ContactCTA"
+export { NewsletterSignup } from "./NewsletterSignup"

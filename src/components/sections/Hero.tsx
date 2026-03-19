@@ -1,9 +1,58 @@
 "use client"
 
+import { useState, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, type Variants } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+
+// Underline Slide with mouse tracking - themed to match (teal)
+const AnimatedName = () => {
+  const [underlineStyle, setUnderlineStyle] = useState({ width: "0%", left: "0%" })
+  const textRef = useRef<HTMLHeadingElement>(null)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
+    if (!textRef.current) return
+    const rect = textRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left // mouse position from left of text
+
+    // Underline expands from mouse position to cover the whole text
+    const width = Math.max(x, rect.width - x) * 2
+    const left = x - width / 2
+
+    // Clamp to stay within text bounds
+    const clampedWidth = Math.min(width, rect.width)
+    const clampedLeft = Math.max(0, Math.min(left, rect.width - clampedWidth))
+
+    setUnderlineStyle({
+      width: `${clampedWidth}px`,
+      left: `${clampedLeft}px`,
+    })
+  }
+
+  const handleMouseLeave = () => {
+    setUnderlineStyle({ width: "0%", left: "0%" })
+  }
+
+  return (
+    <motion.h1
+      ref={textRef}
+      variants={itemVariants}
+      className="text-5xl md:text-7xl font-heading font-extrabold mb-4 relative inline-block cursor-default"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <span className="relative z-10">Manohar Gupta</span>
+      <span
+        className="absolute bottom-0 h-1 bg-gradient-to-r from-teal-400 to-teal-500 rounded-full transition-all duration-150 ease-out"
+        style={{
+          width: underlineStyle.width,
+          left: underlineStyle.left,
+        }}
+      />
+    </motion.h1>
+  )
+}
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -46,12 +95,7 @@ export function Hero() {
               Hi, I&apos;m
             </motion.p>
 
-            <motion.h1
-              variants={itemVariants}
-              className="text-5xl md:text-7xl font-heading font-extrabold mb-4"
-            >
-              Manohar Gupta
-            </motion.h1>
+            <AnimatedName />
 
             <motion.p
               variants={itemVariants}
@@ -64,9 +108,7 @@ export function Hero() {
               variants={itemVariants}
               className="text-lg text-muted-foreground mb-8 max-w-xl"
             >
-              Manager at ReNew specializing in project finance for renewable energy.
-              IIT Roorkee engineer, IIM Rohtak gold medalist. I build things —
-              from solar plant financial models to IoT sensor dashboards.
+              Engineer turned finance professional driving renewable energy at ReNew (IIT Roorkee Grad, IIM Rohtak Gold Medalist). Whether it&apos;s structuring financial models, coding IoT dashboards, or building AI-integrated applications, I love creating technical solutions that solve complex problems and scale impact.
             </motion.p>
 
             <motion.div
