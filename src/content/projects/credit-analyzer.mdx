@@ -1,0 +1,36 @@
+---
+title: "Credit Analyzer"
+description: "Personal finance tool that auto-parses bank statements and provides AI-powered spending insights with interactive dashboards."
+date: "2025-02-15"
+tags: ["Finance", "AI", "Data"]
+featured: true
+status: "completed"
+thumbnail: "/images/projects/credit-analyzer.png"
+metrics: "Supports 6+ bank formats with AI categorization"
+tools: ["React", "Node.js", "Python", "Flask", "SQLite", "OpenRouter API"]
+---
+
+## Overview
+
+A full-stack personal finance analyzer that lets you upload credit card and bank PDFs/CSVs, automatically parse transactions across multiple bank formats, and get AI-powered categorization and spending insights.
+
+## Architecture
+
+- **React + Vite Frontend** — Interactive dashboard with drag-and-drop upload, pie/bar charts, and transaction management
+- **Node.js/Express Backend** — REST API with SQLite database for persistent storage
+- **Python/Flask Microservice** — PDF parsing with PDFPlumber and ML-based categorization
+
+## Key Features
+
+- **Auto-Parsing**: Supports Chase, HDFC, SBI, ICICI, Amex, and Citi statement formats
+- **AI Categorization**: Uses OpenRouter/MiniMax for intelligent spending categorization
+- **Interactive Dashboard**: Recharts-powered pie and bar charts for spending analytics
+- **Teach Me Mode**: Manage categorization rules with retroactive updates
+- **Subscription Detection**: Auto-detect recurring payments
+- **AI Insights**: Personalized spending recommendations
+
+## Results
+
+- Parses 6+ bank statement formats automatically
+- AI categorization accuracy improves with user feedback via "Teach Me" mode
+- Full CRUD transaction management with inline editing

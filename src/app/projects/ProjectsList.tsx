@@ -22,7 +22,15 @@ interface ProjectsListProps {
 type Status = "completed" | "in-progress" | "planned"
 
 export function ProjectsList({ projects }: ProjectsListProps) {
+  const [activeFilter, setActiveFilter] = useState("All")
   const [viewMode, setViewMode] = useState<"grid" | "deck">("grid")
+
+  // Get unique tags from all projects
+  const allTags = Array.from(
+    new Set(projects.flatMap((p) => p.frontmatter.tags))
+  ).sort()
+
+  const filters = ["All", ...allTags]
 
   // Separate projects by status
   const completedProjects = projects.filter(
@@ -32,6 +40,12 @@ export function ProjectsList({ projects }: ProjectsListProps) {
   const wipProjects = projects.filter(
     (p) => p.frontmatter.status === "in-progress" || p.frontmatter.status === "planned"
   )
+
+  // Apply tag filter
+  const filterByTag = (projectList: Project[]) =>
+    activeFilter === "All"
+      ? projectList
+      : projectList.filter((p) => p.frontmatter.tags.includes(activeFilter))
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -159,17 +173,34 @@ export function ProjectsList({ projects }: ProjectsListProps) {
         </div>
       </div>
 
+      {/* Filter Bar */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        {filters.map((filter) => (
+          <button
+            key={filter}
+            onClick={() => setActiveFilter(filter)}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              activeFilter === filter
+                ? "bg-primary text-primary-foreground"
+                : "bg-accent/50 text-muted-foreground hover:text-foreground hover:bg-accent"
+            }`}
+          >
+            {filter}
+          </button>
+        ))}
+      </div>
+
       {/* Deck View - Only for completed projects */}
       {viewMode === "deck" ? (
-        <ProjectsDeck projects={completedProjects} />
+        <ProjectsDeck projects={filterByTag(completedProjects)} />
       ) : (
         <>
           {/* Completed Projects */}
-          {completedProjects.length > 0 && (
+          {filterByTag(completedProjects).length > 0 && (
             <section className="mb-12">
               <SectionHeader
                 title="Completed"
-                count={completedProjects.length}
+                count={filterByTag(completedProjects).length}
               />
               <motion.div
                 variants={containerVariants}
@@ -178,7 +209,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                 className="grid md:grid-cols-2 gap-6"
               >
                 <AnimatePresence mode="popLayout">
-                  {completedProjects.map((project) => (
+                  {filterByTag(completedProjects).map((project) => (
                     <ProjectCard key={project.slug} project={project} />
                   ))}
                 </AnimatePresence>
@@ -187,11 +218,11 @@ export function ProjectsList({ projects }: ProjectsListProps) {
           )}
 
           {/* In Progress / Planned Projects */}
-          {wipProjects.length > 0 && (
+          {filterByTag(wipProjects).length > 0 && (
             <section>
               <SectionHeader
                 title="In Progress / Planned"
-                count={wipProjects.length}
+                count={filterByTag(wipProjects).length}
               />
               <motion.div
                 variants={containerVariants}
@@ -200,7 +231,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                 className="grid md:grid-cols-2 gap-6"
               >
                 <AnimatePresence mode="popLayout">
-                  {wipProjects.map((project) => (
+                  {filterByTag(wipProjects).map((project) => (
                     <ProjectCard key={project.slug} project={project} />
                   ))}
                 </AnimatePresence>

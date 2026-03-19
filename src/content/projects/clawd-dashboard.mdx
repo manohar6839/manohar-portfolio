@@ -1,0 +1,31 @@
+---
+title: "Clawd Agent Dashboard"
+description: "Command center dashboard for monitoring and controlling the Clawd AI agent — memory management, skills registry, and chat interface."
+date: "2025-03-01"
+tags: ["AI", "Web"]
+status: "in-progress"
+thumbnail: "/images/projects/clawd-dashboard.png"
+metrics: "Real-time agent monitoring with memory editing"
+tools: ["Next.js", "Shadcn/UI", "Tailwind CSS", "SWR", "Lucide React"]
+---
+
+## Overview
+
+A premium dark-mode "Command Center" designed to monitor and interact with the Clawd AI agent. Provides real-time visibility into agent memory, logs, scheduled tasks (cron jobs), and capabilities (skills).
+
+## Key Features
+
+- **System Status**: Real-time heartbeat monitoring of the `clawdbot` process
+- **Memory Management**: View and edit the agent's core memory (`MEMORY.md`) and daily logs
+- **Skills Registry**: Browse, edit, and manage the agent's capabilities and MCP tools
+- **Cron Jobs**: Detailed view and control over scheduled background tasks
+- **Chat Interface**: Integrated chat window to communicate directly with the agent
+- **Dark Mode**: Built with a "Slate & Violet" aesthetic optimized for low-light environments
+
+## Technical Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **UI Components**: Shadcn/UI (Radix Primitives)
+- **Styling**: Tailwind CSS
+- **State Management**: SWR / React Query
+- **Backend**: Next.js API Routes (Serverless)
