@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
 import { AgentationWrapper } from "@/components/AgentationWrapper";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -141,6 +142,7 @@ export default function RootLayout({
             />
           </>
         )}
+        <Analytics />
       </body>
     </html>
   );
