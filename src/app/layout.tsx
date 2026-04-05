@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
 import { AgentationWrapper } from "@/components/AgentationWrapper";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -145,6 +146,7 @@ export default function RootLayout({
           src="https://vercel.com/analytics/script.js"
           strategy="lazyOnload"
         />
+        <SpeedInsights />
       </body>
     </html>
   );
