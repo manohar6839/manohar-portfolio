@@ -141,6 +141,10 @@ export default function RootLayout({
             />
           </>
         )}
+        <Script
+          src="https://vercel.com/analytics/script.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
