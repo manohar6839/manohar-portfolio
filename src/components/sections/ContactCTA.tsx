@@ -51,6 +51,7 @@ export function ContactCTA() {
           </p>
           <Link
             href="/contact"
+            onClick={() => typeof umami !== "undefined" && umami.track("cta-click", { button: "get-in-touch", page: "home" })}
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300 mb-8"
           >
             Get in Touch
@@ -65,6 +66,7 @@ export function ContactCTA() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
                 aria-label={link.label}
+                onClick={() => typeof umami !== "undefined" && umami.track("external-link", { destination: link.label.toLowerCase(), page: "home" })}
               >
                 <link.icon className="h-6 w-6" />
               </a>

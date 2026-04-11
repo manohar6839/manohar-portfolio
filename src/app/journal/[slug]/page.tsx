@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import MDXComponents from "@/components/mdx/MDXComponents"
 import { LinkedInEmbed } from "@/components/mdx/LinkedInEmbed"
 import { MDXRemote } from "next-mdx-remote/rsc"
+import { TrackPageView } from "@/components/TrackPageView"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -121,6 +122,7 @@ export default async function JournalPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <TrackPageView event="journal-read" data={{ post: slug }} />
       <Link
         href="/journal"
         className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"

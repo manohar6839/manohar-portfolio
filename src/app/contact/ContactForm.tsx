@@ -31,6 +31,9 @@ export function ContactForm() {
 
       if (response.ok) {
         setStatus("success")
+        if (typeof umami !== "undefined") {
+          umami.track("contact-submit", { subject: formData.subject })
+        }
         setFormData({ name: "", email: "", subject: "", message: "" })
       } else {
         setStatus("error")
@@ -178,6 +181,7 @@ export function ContactForm() {
               <a
                 href="mailto:pgp09manoharg@iimrohtak.ac.in"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => typeof umami !== "undefined" && umami.track("external-link", { destination: "email", page: "contact" })}
               >
                 <Mail className="h-5 w-5" />
                 <span>pgp09manoharg@iimrohtak.ac.in</span>
@@ -187,6 +191,7 @@ export function ContactForm() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => typeof umami !== "undefined" && umami.track("external-link", { destination: "linkedin", page: "contact" })}
               >
                 <Linkedin className="h-5 w-5" />
                 <span>LinkedIn</span>
@@ -196,6 +201,7 @@ export function ContactForm() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => typeof umami !== "undefined" && umami.track("external-link", { destination: "github", page: "contact" })}
               >
                 <Github className="h-5 w-5" />
                 <span>GitHub</span>

@@ -78,7 +78,10 @@ export function ProjectsList({ projects }: ProjectsListProps) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.2 }}
     >
-      <div onClick={() => router.push(`/projects/${project.slug}`)} role="link" tabIndex={0}>
+      <div onClick={() => {
+        if (typeof umami !== "undefined") umami.track("project-view", { project: project.slug, source: "projects-list" })
+        router.push(`/projects/${project.slug}`)
+      }} role="link" tabIndex={0}>
         <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent overflow-hidden">
           {project.frontmatter.thumbnail ? (
             <div className="relative aspect-video w-full overflow-hidden">

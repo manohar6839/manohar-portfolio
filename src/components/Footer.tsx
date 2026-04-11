@@ -1,6 +1,8 @@
-import Link from "next/link"
+"use client"
+
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import { siteConfig } from "@/config/site"
+import { TrackedExternalLink } from "@/components/TrackedExternalLink"
 
 const socialLinks = [
   {
@@ -40,17 +42,13 @@ export function Footer() {
 
           <div className="flex items-center gap-4">
             {socialLinks.map((link) => (
-              <a
+              <TrackedExternalLink
                 key={link.label}
                 href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200"
-                aria-label={link.label}
-                suppressHydrationWarning
-              >
-                <link.icon className="h-5 w-5" />
-              </a>
+                label={link.label}
+                icon={link.icon}
+                external={link.external}
+              />
             ))}
           </div>
         </div>

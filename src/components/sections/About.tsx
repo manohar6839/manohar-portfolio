@@ -55,6 +55,7 @@ export function About() {
             </div>
             <Link
               href="/resume"
+              onClick={() => typeof umami !== "undefined" && umami.track("cta-click", { button: "resume", page: "home" })}
               className="inline-flex items-center gap-2 mt-6 text-primary hover:underline"
             >
               More on my resume <ArrowRight className="h-4 w-4" />

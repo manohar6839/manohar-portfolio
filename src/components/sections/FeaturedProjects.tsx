@@ -107,7 +107,9 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         >
           {displayProjects.slice(0, 3).map((project, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Link href={project.slug ? `/projects/${project.slug}` : "/projects"}>
+              <Link href={project.slug ? `/projects/${project.slug}` : "/projects"}
+                onClick={() => typeof umami !== "undefined" && umami.track("project-view", { project: project.slug || "default", source: "featured" })}
+              >
                 <Card className="h-full hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer group border border-transparent overflow-hidden">
                   {project.frontmatter.thumbnail ? (
                     <div className="relative aspect-video w-full overflow-hidden">

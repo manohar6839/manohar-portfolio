@@ -117,6 +117,7 @@ export function Hero() {
             >
               <Link
                 href="/projects"
+                onClick={() => typeof umami !== "undefined" && umami.track("cta-click", { button: "view-projects", page: "home" })}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300"
               >
                 View Projects
@@ -124,6 +125,7 @@ export function Hero() {
               </Link>
               <Link
                 href="/journal"
+                onClick={() => typeof umami !== "undefined" && umami.track("cta-click", { button: "read-journal", page: "home" })}
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary/10 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)] transition-all duration-300"
               >
                 Read Journal
